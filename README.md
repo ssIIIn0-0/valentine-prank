@@ -1,70 +1,107 @@
-# Getting Started with Create React App
+# Valentine Prank
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+> "거절은 없다" - 발렌타인 데이트 초대장 웹앱
 
-## Available Scripts
+상대방에게 발렌타인 데이트를 신청하는 인터랙티브 초대장 웹 애플리케이션입니다.
+"싫어요" 버튼이 도망가는 장난스러운 UX로, 결국 "좋아요"를 누를 수밖에 없게 만듭니다.
 
-In the project directory, you can run:
+**[Live Demo](https://valentine-prank-nine.vercel.app/)**
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Preview
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### 1. 비밀 초대장 도착
+편지 봉투 애니메이션과 함께 "누군가로부터 비밀 초대장이 도착했습니다"라는 메시지가 표시됩니다.
 
-### `npm test`
+### 2. 장난스러운 선택지
+"네 너무 좋아요"와 "절대 싫어요" 두 가지 버튼이 나타나지만, **"싫어요" 버튼은 마우스를 올리면 랜덤한 위치로 도망갑니다.**
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 3. 초대장 공개
+수락 시 떠다니는 하트 이모지와 함께 발렌타인 데이트 초대 메시지가 나타납니다.
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Features
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- **도망가는 거절 버튼** - hover/touch 시 뷰포트 내 랜덤 위치로 이동
+- **3단계 페이지 플로우** - 기대감 → 장난 → 감동의 흐름 설계
+- **다양한 CSS 애니메이션** - 바운스, 페이드인, 펄스, 플로팅 이모지
+- **반응형 디자인** - 모바일 터치 이벤트 지원 (`onTouchStart`)
+- **24개 플로팅 이모지** - 랜덤 크기/속도/위치로 떠오르는 하트 애니메이션
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `npm run eject`
+## Tech Stack
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+| 구분 | 기술 |
+|------|------|
+| Frontend | React 19 |
+| Styling | CSS (Custom Animations) |
+| Build Tool | Create React App |
+| Deploy | Vercel |
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+---
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Getting Started
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```bash
+# 레포지토리 클론
+git clone https://github.com/your-username/valentine-prank.git
 
-## Learn More
+# 의존성 설치
+npm install
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+# 개발 서버 실행
+npm start
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+`http://localhost:3000`에서 확인할 수 있습니다.
 
-### Code Splitting
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Project Structure
 
-### Analyzing the Bundle Size
+```
+src/
+├── App.js        # 메인 컴포넌트 (3페이지 플로우 & 인터랙션 로직)
+├── App.css       # 스타일링 & 애니메이션 정의
+├── index.js      # 엔트리 포인트
+└── index.css     # 글로벌 스타일
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+---
 
-### Making a Progressive Web App
+## Key Implementation
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### 도망가는 버튼
 
-### Advanced Configuration
+```jsx
+const runAway = useCallback(() => {
+  const newTop = Math.random() * 80 + 5;
+  const newLeft = Math.random() * 80 + 5;
+  setNoButtonPosition({ top: newTop, left: newLeft });
+}, []);
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+`useCallback`으로 최적화된 핸들러가 hover/touch 이벤트마다 버튼의 `position`을 랜덤하게 변경합니다.
 
-### Deployment
+### 플로팅 이모지
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+24개의 이모지가 각각 랜덤한 위치, 크기(1.2~3rem), 속도(3~7초), 딜레이(0~3초)로 화면 아래에서 위로 떠오르며 360도 회전합니다.
 
-### `npm run build` fails to minify
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Deploy
+
+Vercel을 통해 자동 배포됩니다.
+
+```bash
+npm run build
+```
+
+---
+
+## License
+
+This project is open source and available under the [MIT License](LICENSE).

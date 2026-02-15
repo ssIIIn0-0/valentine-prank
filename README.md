@@ -53,7 +53,7 @@ https://github.com/user-attachments/assets/6bf467f6-85d9-464f-a4f8-535b091e80c1
 
 ```bash
 # 레포지토리 클론
-git clone https://github.com/your-username/valentine-prank.git
+git clone https://github.com/ssIIIn0-0/valentine-prank.git
 
 # 의존성 설치
 npm install

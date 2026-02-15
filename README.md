@@ -11,6 +11,12 @@
 
 ## Preview
 
+
+
+https://github.com/user-attachments/assets/6bf467f6-85d9-464f-a4f8-535b091e80c1
+
+
+
 ### 1. 비밀 초대장 도착
 편지 봉투 애니메이션과 함께 "누군가로부터 비밀 초대장이 도착했습니다"라는 메시지가 표시됩니다.
 
